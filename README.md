@@ -21,6 +21,16 @@ Gemini for a sharper AI-written tip — see "Choosing an AI provider" below.
    shown in the sticky-note-style sheet at the bottom.
 5. **Track** — tapped objects get a checkmark and count toward the
    progress dots at the top. "Retake photo" resets everything.
+6. **Manual taps (for what COCO-SSD can't see)** — COCO-SSD only knows 80
+   fixed categories, and notably has **no "clothing" class at all** — a
+   pile of clothes on a chair can never be auto-detected no matter how
+   clear the photo is. Tapping anywhere on the photo that has no
+   auto-detected hotspot under it (a gold marker appears there) crops
+   that spot and sends it to the configured AI provider for
+   identification instead — since a vision LLM isn't limited to a fixed
+   category list, it can actually recognize things COCO-SSD structurally
+   can't. This only works with `AI_PROVIDER=groq` or `gemini` set; in
+   `none` mode a manual tap says so plainly rather than guessing.
 
 ## Choosing an AI provider (`AI_PROVIDER`)
 
@@ -153,6 +163,11 @@ public/
   icons/                     app icons
 ```
 
-## Gemini
+## Ideas to extend (good for a school project write-up)
 
-500 taps/day is generous for a school project — you'd need to tap roughly 500 objects across all your testing in a single day to hit it, and even then it resets daily. Nothing to worry about for a demo. If you ever do see a 429 from Gemini, the app already falls back silently to the local dictionary answer for that tap (same behavior as the Groq fallback), so it won't break anything mid-demo.
+- Swap COCO-SSD for a custom-trained model (e.g. via Roboflow/YOLO) to
+  recognize messier-room-specific items (laundry, toys, cables).
+- Add a history screen showing before/after photos.
+- Let users edit/add their own object -> destination mappings in-app
+  and persist them with `localStorage`.
+- Use the Web Share API so a tidied "after" photo can be shared.

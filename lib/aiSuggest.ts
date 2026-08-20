@@ -11,7 +11,7 @@ export interface AiSuggestion {
 
 export async function fetchAiSuggestion(
   imageDataUrl: string,
-  label: string
+  label?: string,
 ): Promise<AiSuggestion | null> {
   try {
     const res = await fetch("/api/identify", {

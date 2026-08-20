@@ -22,9 +22,16 @@ body {
 
 body {
   min-height: 100vh;
-  background: radial-gradient(circle at 1px 1px, rgba(31, 42, 36, 0.08) 1px, transparent 0) 0 0/18px 18px,
+  background:
+    radial-gradient(
+        circle at 1px 1px,
+        rgba(31, 42, 36, 0.08) 1px,
+        transparent 0
+      )
+      0 0/18px 18px,
     var(--canvas);
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", sans-serif;
   color: var(--ink);
 }
 
@@ -175,7 +182,9 @@ body {
   height: 6px;
   border-radius: 50%;
   background: rgba(31, 42, 36, 0.15);
-  transition: background 0.25s ease, transform 0.25s ease;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
 }
 
 .dots span.done {
@@ -189,6 +198,15 @@ body {
   padding: 0 12px 12px;
   flex: 1;
   display: flex;
+  flex-direction: column;
+}
+
+.manual-tap-hint {
+  text-align: center;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: rgba(31, 42, 36, 0.45);
+  padding: 8px 10px 0;
 }
 
 .hint-toast {
@@ -298,10 +316,14 @@ body {
   height: 20px;
   border-radius: 50%;
   background: var(--coral);
-  box-shadow: 0 0 0 4px rgba(255, 107, 74, 0.22), 0 3px 6px rgba(31, 42, 36, 0.3);
+  box-shadow:
+    0 0 0 4px rgba(255, 107, 74, 0.22),
+    0 3px 6px rgba(31, 42, 36, 0.3);
   position: relative;
   z-index: 2;
-  transition: transform 0.15s ease, opacity 0.2s ease;
+  transition:
+    transform 0.15s ease,
+    opacity 0.2s ease;
 }
 
 .obj .ring {
@@ -340,7 +362,9 @@ body {
   justify-content: center;
   opacity: 0;
   transform: scale(0.4);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
   z-index: 4;
 }
 
@@ -358,6 +382,20 @@ body {
   transform: scale(1);
 }
 
+/* Manual taps (things COCO-SSD couldn't auto-detect, like clothing) get
+   a gold marker instead of coral, so it's visually clear which hotspots
+   were auto-found vs. tapped in by hand. */
+.obj.manual .obj-dot {
+  background: var(--gold);
+  box-shadow:
+    0 0 0 4px rgba(232, 169, 58, 0.22),
+    0 3px 6px rgba(31, 42, 36, 0.3);
+}
+
+.obj.manual .ring {
+  border-color: var(--gold);
+}
+
 /* ---------- Suggestion sheet ---------- */
 .sheet {
   position: absolute;
@@ -370,7 +408,9 @@ body {
   box-shadow: 0 18px 30px -12px rgba(31, 42, 36, 0.3);
   transform: translateY(130%);
   opacity: 0;
-  transition: transform 0.32s cubic-bezier(0.2, 0.9, 0.3, 1.2), opacity 0.25s ease;
+  transition:
+    transform 0.32s cubic-bezier(0.2, 0.9, 0.3, 1.2),
+    opacity 0.25s ease;
   z-index: 10;
 }
 
